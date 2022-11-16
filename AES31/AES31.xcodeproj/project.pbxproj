@@ -1,0 +1,141 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXFileReference section */
+		6FBE227B0BACB9D2002E8488 /* MuteAutomationPoint.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = MuteAutomationPoint.java; path = src/com/therockquarry/aes31/adl/MuteAutomationPoint.java; sourceTree = "<group>"; };
+		6FFAA6B20B56C297000B638E /* PanListSection.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = PanListSection.java; path = src/com/therockquarry/aes31/adl/PanListSection.java; sourceTree = "<group>"; };
+		6FFAA6BC0B56C3C7000B638E /* PanAutomationPoint.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = PanAutomationPoint.java; path = src/com/therockquarry/aes31/adl/PanAutomationPoint.java; sourceTree = "<group>"; };
+		886FEE5605D9BD280091015F /* build.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = build.xml; sourceTree = "<group>"; };
+		886FEE5705D9BD280091015F /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
+		886FEE5905D9BD280091015F /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = src; sourceTree = "<group>"; };
+		8892C864061E18790047113C /* dist */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		88230FFA05D9926E00FE8D22 = {
+			isa = PBXGroup;
+			children = (
+				6FFAA6BC0B56C3C7000B638E /* PanAutomationPoint.java */,
+				6FFAA6B20B56C297000B638E /* PanListSection.java */,
+				886FEE5605D9BD280091015F /* build.xml */,
+				886FEE5905D9BD280091015F /* src */,
+				6FBE227B0BACB9D2002E8488 /* MuteAutomationPoint.java */,
+				886FEE5705D9BD280091015F /* lib */,
+				8892C864061E18790047113C /* dist */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		8823100505D9929B00FE8D22 /* AES31 */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-emacs $(ACTION) -v";
+			buildConfigurationList = 6F0B52A008BE41370000CE7D /* Build configuration list for PBXLegacyTarget "AES31" */;
+			buildPhases = (
+			);
+			buildToolPath = /Developer/Java/Ant/bin/ant;
+			dependencies = (
+			);
+			name = AES31;
+			passBuildSettingsInEnvironment = 1;
+			productName = AES31;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		88230FFE05D9926E00FE8D22 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 6F0B52A408BE41370000CE7D /* Build configuration list for PBXProject "AES31" */;
+			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 88230FFA05D9926E00FE8D22;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8823100505D9929B00FE8D22 /* AES31 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		6F0B52A108BE41370000CE7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				PRODUCT_NAME = AES31;
+			};
+			name = Debug;
+		};
+		6F0B52A208BE41370000CE7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				PRODUCT_NAME = AES31;
+			};
+			name = Release;
+		};
+		6F0B52A308BE41370000CE7D /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = AES31;
+			};
+			name = Default;
+		};
+		6F0B52A508BE41370000CE7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		6F0B52A608BE41370000CE7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		6F0B52A708BE41370000CE7D /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6F0B52A008BE41370000CE7D /* Build configuration list for PBXLegacyTarget "AES31" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F0B52A108BE41370000CE7D /* Debug */,
+				6F0B52A208BE41370000CE7D /* Release */,
+				6F0B52A308BE41370000CE7D /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		6F0B52A408BE41370000CE7D /* Build configuration list for PBXProject "AES31" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F0B52A508BE41370000CE7D /* Debug */,
+				6F0B52A608BE41370000CE7D /* Release */,
+				6F0B52A708BE41370000CE7D /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 88230FFE05D9926E00FE8D22 /* Project object */;
+}
