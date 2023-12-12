@@ -3,9 +3,9 @@
 	EventListSection.java
 	AES31-3
 
-	Created by David Ackerman on 7/10/05.
+	Created by Kaylie Ackerman on 7/10/05.
 
-	Copyright 2005 David Ackerman.
+	Copyright 2005 Kaylie Ackerman.
 	-------------------------------------------------------------------------------
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License
@@ -26,7 +26,7 @@
 package com.therockquarry.aes31.adl;
 
 import java.util.*;
-
+import java.math.*;
 import org.jdom2.*;
 import org.jdom2.input.*;
 import org.jdom2.output.*;
@@ -119,6 +119,24 @@ public class EventListSection extends BaseSection implements Cloneable {
 			bee.setEntryNumber(++i);
 		}
 	}
+    
+    public BigDecimal getDuration ()
+    {
+        TcfToken start = new TcfToken(0, 96000.0);
+        TcfToken end = new TcfToken(0, 96000.0);
+        for (BaseEditEntry bee: _entries)
+        {
+            if (bee.getDestIn().compareTo(start) == -1) {
+                start = bee.getDestIn();
+            }
+            
+            if (bee.getDestOut().compareTo(end) == 1) {
+                end = bee.getDestOut();
+            }
+        }
+        BigDecimal length = end.getNumberOfSecondsForTimeCode().subtract(start.getNumberOfSecondsForTimeCode());
+        return length;
+    }
 	
 	/**
 	*	Returns the <code>BaseEditEntry</code> that coresponds to the entry number argument.
