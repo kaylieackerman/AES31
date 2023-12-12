@@ -5,7 +5,7 @@
 
 	Created on 7/13/05.
 
-	Copyright 2005 David Ackerman.
+	Copyright 2005 Kaylie Ackerman.
 	-------------------------------------------------------------------------------
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License
@@ -576,6 +576,43 @@ public class TcfToken implements Cloneable, Comparable<TcfToken>
 		_sample_count += (_hours * 60 * 60 * _frame_count * (_sample_rate/_frame_count));
 		return _sample_count;
 	}
+    
+    public BigDecimal getNumberOfSecondsForTimeCode() {
+        BigDecimal time;
+        int frameCount = 0;
+        double sampleRate = (double)0;
+        double timeBase = (double)0;
+        
+        frameCount = _frame_count;
+        
+        //discover the samplerate for this tcf object
+        sampleRate = _sample_rate;
+        
+        // Timebase
+        timeBase = _time_base;
+        
+        //recalc the timecode as seconds
+        time = new BigDecimal(0.0);
+        time.setScale(DECIMAL_SCALE, BigDecimal.ROUND_UNNECESSARY);
+        
+        time = time.add(new BigDecimal(_hours * MINUTES_PER_HOUR * SECONDS_PER_MINUTE));
+        time = time.add(new BigDecimal(_minutes * SECONDS_PER_MINUTE));
+        time = time.add(new BigDecimal(_seconds));
+        time = time.add(new BigDecimal(_frames * (1.0 / frameCount)));
+        if (_sample_remainder > 0) {
+            time = time.add(new BigDecimal(_sample_remainder * 1.0 / sampleRate));
+        }
+        
+//        if (getCountingMode().getType() == CountingModeType.NTSC_DROP_FRAME_TYPE) {
+//            int minutesToDrop = ((getHours() * MINUTES_PER_HOUR) + getMinutes());
+//            int framesToDrop = ((minutesToDrop - (minutesToDrop / 10)) * 2);
+//            time = time.subtract(new BigDecimal(framesToDrop * 1.0 / frameCount));
+//        }
+        
+        time = time.multiply(new BigDecimal(timeBase));
+        
+        return time;
+    }
 	
 	/*public BigDecimal valueOf ()
 	{
