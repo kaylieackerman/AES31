@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="AES31" default="doc" basedir=".">
+    <property name="src" location="src"/>
+    <property name="bin" location="bin"/>
+    <property name="lib" location="lib"/>
+    <property name="dist" location="dist"/>
+    <property name="doc" location="doc" />
+    <property name="jarfile" location="${dist}/${ant.project.name}.jar"/>
+    <property name="compile.debug" value="true"/>
+
+    <fileset id="lib.jars" dir="${lib}">
+        <include name="**/*.jar"/>
+    </fileset>
+
+    <path id="lib.path">
+        <fileset refid="lib.jars"/>
+    </path>
+
+    <!-- Stub install target.  Install should depend on the 'jar' target,
+         and copy the built objects to the 'dist' directory. -->
+    <target name="install" description="Install jar" depends="jar">
+    </target>
+
+    <target name="compile" description="Compile code">
+        <mkdir dir="${bin}"/>
+        <mkdir dir="${lib}"/>
+        <javac source="11" target="11" srcdir="${src}" destdir="${bin}" includeAntRuntime="no"
+               classpathref="lib.path" debug="${compile.debug}">
+        	<compilerarg value="-Xlint:unchecked"></compilerarg>
+        </javac>
+    </target>
+
+    <target name="jar" depends="compile" description="Build jar">
+        <mkdir dir="${dist}"/>
+        <jar jarfile="${jarfile}" basedir="${bin}" manifest="Manifest"/>
+    </target>
+    
+    <target name="doc" depends="jar">
+    	<mkdir dir="${doc}" />
+    	<javadoc sourcepath="${src}" destdir="${doc}/html" link="http://java.sun.com/j2se/1.5/docs/api/" >
+    		<fileset dir="${src}/com/therockquarry/aes31/adl" includes="*.java" />
+    	</javadoc>
+    </target>
+    	
+
+    <target name="clean" description="Remove build and dist directories">
+        <delete dir="${bin}"/>
+        <delete dir="${dist}"/>
+        <delete dir="${doc}" />
+    </target>
+</project>
