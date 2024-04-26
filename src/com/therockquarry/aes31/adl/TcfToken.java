@@ -103,13 +103,13 @@ public class TcfToken implements Cloneable, Comparable<TcfToken>
 	public TcfToken (long sampleCount, int frameCount, boolean dropframe, float timeBase, int videoField, double sampleRate)
 	{
 		
-		/*System.out.println("SAMPLE COUNT: " + sampleCount);
-		System.out.println("FRAME COUNT: " + frameCount);
-		System.out.println("DROP FRAME: " + dropframe);
-		System.out.println("TIME BASE: " + timeBase);
-		System.out.println("VIDEO FIELD: " + videoField);
-		System.out.println("SAMPLE RATE: " + sampleRate);
-		*/
+//		System.out.println("SAMPLE COUNT: " + sampleCount);
+//		System.out.println("FRAME COUNT: " + frameCount);
+//		System.out.println("DROP FRAME: " + dropframe);
+//		System.out.println("TIME BASE: " + timeBase);
+//		System.out.println("VIDEO FIELD: " + videoField);
+//		System.out.println("SAMPLE RATE: " + sampleRate);
+		
 		
 		_init ();
 		_hours = 0;
@@ -130,12 +130,15 @@ public class TcfToken implements Cloneable, Comparable<TcfToken>
 		
 		_dropframe = dropframe;
 		
-		if (timeBase == 1 || timeBase == 1.001)
+        System.out.println("TIME BASE: " + "\"" + timeBase + "\"");
+        System.out.println("Called with " + sampleCount + " and " + sampleRate);
+		if (timeBase == 1 || timeBase == 1.001f)
 		{
 			_time_base = timeBase;
 		}
 		else
 		{
+            System.out.println("NO TIMEBASE!");
 			//throw invalid data exception
 		}
 		
@@ -145,12 +148,13 @@ public class TcfToken implements Cloneable, Comparable<TcfToken>
 		}
 		else
 		{
+            System.out.println("NO VIDEO FIELD!");
 			//throw invalid data exception
 		}
 		
 		if (_sampleRateToChar() == '0')
 		{
-			//throw invalid data exception
+            System.out.println("NO SAMPLERATE CHAR!");
 		}
 		
 		_film_framing = _frameCountAndTimebaseToChar();
@@ -296,13 +300,21 @@ public class TcfToken implements Cloneable, Comparable<TcfToken>
 	//proof of concept
 	public void adjustTime (long samples)
 	{
-		long _sample_count = 0;
+		double _sample_count = 0;
+//        System.out.println(_sample_remainder);
+//        System.out.println(_frames);
+//        System.out.println(_seconds);
+//        System.out.println(_minutes);
+//        System.out.println(_hours);
+//        System.out.println(samples);
+        
 		_sample_count += _sample_remainder;
 		_sample_count += ((_sample_rate / (_frame_count)) * _frames);
 		_sample_count += (_seconds * _frame_count * (_sample_rate/_frame_count));
 		_sample_count += (_minutes * 60 * _frame_count * (_sample_rate/_frame_count));
 		_sample_count += (_hours * 60 * 60 * _frame_count * (_sample_rate/_frame_count));
 		_sample_count += samples;
+        _sample_count = _sample_count / _time_base;
 		
 		/*double tmp = ((_sample_count/_sample_rate)/60)/60;
 		_hours = (int)tmp;
@@ -324,7 +336,7 @@ public class TcfToken implements Cloneable, Comparable<TcfToken>
 			_sample_remainder++;
 		}*/
 		
-		//System.out.println("SAMPLE COUNT: " + _sample_count);
+		System.out.println("SAMPLE COUNT: " + _sample_count);
 		
 		long sample_in_1_frame = (long)(_sample_rate/_frame_count);
 		long sample_in_1_second = sample_in_1_frame * _frame_count;
@@ -358,9 +370,17 @@ public class TcfToken implements Cloneable, Comparable<TcfToken>
 		DecimalFormat form2 = new DecimalFormat("00");
 		DecimalFormat form4 = new DecimalFormat("0000");
 		String rval;
+        
+//        System.out.println("SAMPLE COUNT: " + _sample_remainder);
+//        System.out.println("FRAME COUNT: " + _frame_count);
+//        System.out.println("DROP FRAME: " + _dropframe);
+//        System.out.println("TIME BASE: " + _time_base);
+//        System.out.println("VIDEO FIELD: " + _video_field);
+//        System.out.println("SAMPLE RATE: " + _sample_rate);
 		
 		if (_hours != -1 && _minutes != -1 &&  _seconds != -1 && _frames != -1)
 			{
+//                System.out.println("OK");
 			rval = form2.format(_hours);
 			rval = rval.concat(String.valueOf(_frameCountAndTimebaseToChar()));
 			rval = rval.concat(form2.format(_minutes));
@@ -371,6 +391,7 @@ public class TcfToken implements Cloneable, Comparable<TcfToken>
 			rval = rval.concat(String.valueOf(_film_framing));
 			rval = rval.concat(form2.format(_seconds));
 			rval = rval.concat(String.valueOf(_videoFieldToChar()));
+                
 			rval = rval.concat(form2.format(_frames));
 			if (_sample_rate != -1)
 			{
@@ -383,6 +404,7 @@ public class TcfToken implements Cloneable, Comparable<TcfToken>
 			rval = "_";
 		}
 		
+        System.out.println("rval: " + rval);
 		return rval;
 	}
 	
@@ -397,7 +419,7 @@ public class TcfToken implements Cloneable, Comparable<TcfToken>
 	private char _frameCountAndTimebaseToChar ()
 	{
 		char rval = '0';
-		
+		System.out.println("_frameCountAndTimebaseToChar: " + _frame_count + " :: " + _time_base);
 		if (_frame_count == 30)
 		{
 			if (_time_base == 0)

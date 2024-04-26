@@ -260,7 +260,7 @@ public class AES31_3 {
 					
 					System.out.println("\n\n--------ADL SORTED----------\n\n");
 					System.out.println(adl);
-										
+                    els.getDuration();
 					
 
 			}
