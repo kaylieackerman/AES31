@@ -126,7 +126,7 @@ public class EventListSection extends BaseSection implements Cloneable {
         TcfToken end = new TcfToken(0, 96000.0);
         for (BaseEditEntry bee: _entries)
         {
-            if (bee.getDestIn().compareTo(start) == -1) {
+            if (bee.getDestIn().compareTo(start) == 1) {
                 start = bee.getDestIn();
             }
             
